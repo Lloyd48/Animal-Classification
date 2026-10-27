@@ -24,6 +24,7 @@ if __name__ == "__main__":
     optimizer = optim.Adam(model.parameters(),lr=0.001)
 
     for i in range(15):
+        print(f"epoch:{i}")
         for image,label in load_data:
             image = image.to(device)
             label = label.to(device)
@@ -32,8 +33,8 @@ if __name__ == "__main__":
             loss = calculator(guess,label)
             loss.backward()
             optimizer.step()
-            print(loss.item())
-            print(f"epoch:{i}")
+
+
     print("model trained")
     torch.save(model.state_dict(),"which_animal.pth")
     print("File saved succesfully")
